@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "edaf90-projekt-3bc60": {
+      "hosting": {
+        "Bokningssystem2": [
+          "edaf90-projekt-3bc60"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "edaf90-projekt-3bc60"
+  }
+}
