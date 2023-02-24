@@ -1,3 +1,6 @@
+import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+
 
 export const environment = {
     production: false,
@@ -10,4 +13,10 @@ export const environment = {
         messagingSenderId: '505574107540',
     }
 };
+
+const app = initializeApp(environment.firebase);
+
+
+export const db = getFirestore(app);
+
 
