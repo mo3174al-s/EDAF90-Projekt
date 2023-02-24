@@ -41,7 +41,16 @@ export class CalendarComponent {
         this.booked = { "time1": false, "time2": false, "time3": false };
       } else {
         querySnapshot.forEach((doc) => {
-          this.booked = doc.data()['Slot'];
+          if (doc.data()['Slot'].time1 === true){
+            this.booked.time1 = true;
+          }
+          if (doc.data()['Slot'].time2 === true){
+            this.booked.time2 = true;
+          }
+          if (doc.data()['Slot'].time3 === true){
+            this.booked.time3 = true;
+          }
+          // this.booked = doc.data()['Slot'];
         });
         // console.log(this.booked);
       }
