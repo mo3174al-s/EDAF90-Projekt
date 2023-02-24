@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db } from 'src/environments/environment';
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
@@ -28,6 +28,35 @@ export class CalendarComponent {
     }
   }
 
+  async bookRoom() {
+
+    var toBeBooked = { time1: false, time2: false, time3: false };
+
+    if (this.button1Clicked) {
+      toBeBooked.time1 = true;
+    }
+    if (this.button2Clicked) {
+      toBeBooked.time2 = true;
+    }
+    if (this.button3Clicked) {
+      toBeBooked.time3 = true;
+    }
+
+    try {
+      const docRef = await addDoc(collection(db, "items"), {
+        Datum: this.selected,
+        Slot: toBeBooked
+      });
+      this.booked = toBeBooked;
+      this.button1Clicked = false;
+      this.button2Clicked = false;
+      this.button3Clicked = false;
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+
+  }
+
   async onDateChange(event: any) {
     this.button1Clicked = false;
     this.button2Clicked = false;
@@ -42,13 +71,13 @@ export class CalendarComponent {
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
         querySnapshot.forEach((doc) => {
-          if (doc.data()['Slot'].time1 === true){
+          if (doc.data()['Slot'].time1 === true) {
             this.booked.time1 = true;
           }
-          if (doc.data()['Slot'].time2 === true){
+          if (doc.data()['Slot'].time2 === true) {
             this.booked.time2 = true;
           }
-          if (doc.data()['Slot'].time3 === true){
+          if (doc.data()['Slot'].time3 === true) {
             this.booked.time3 = true;
           }
           // this.booked = doc.data()['Slot'];

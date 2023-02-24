@@ -3,11 +3,16 @@
 </mat-card>
 
 <div class="show-date" *ngIf="selected !== undefined">
-    <!-- <p>Selected date: {{selected}}</p> -->
+    <h4 style="margin-left: 10px;">Välj en tid:</h4>
     <button [ngClass]="{ 'green': button1Clicked }" (click)="onButtonClick(1)" [disabled]="booked.time1"
         style="width : 200px; height: 50px; margin: 5px; margin-left:20px;" mat-stroked-button>9 - 12</button>
     <button [ngClass]="{ 'green': button2Clicked }" (click)="onButtonClick(2)" [disabled]="booked.time2"
         style="width : 200px; height: 50px; margin: 5px; " mat-stroked-button>12 - 15</button>
     <button [ngClass]="{ 'green': button3Clicked }" (click)="onButtonClick(3)" [disabled]="booked.time3"
         style="width : 200px; height: 50px; margin: 5px; " mat-stroked-button>15 - 18</button>
+    
+    
+        <div *ngIf="button1Clicked || button2Clicked || button3Clicked" style="padding: 10px; margin-left: 20px;">
+        <button  mat-raised-button color="primary" (click)="bookRoom()">Boka</button>
+    </div>
 </div>
