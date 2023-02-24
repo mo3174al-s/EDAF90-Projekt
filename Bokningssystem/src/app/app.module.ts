@@ -19,7 +19,7 @@ import {MatCardModule} from '@angular/material/card';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, 
-    MatTabsModule
+    MatTabsModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
@@ -28,8 +28,7 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatCardModule
   ],
-  declarations: [ AppComponent, MenyBarComponent],
-  declarations: [ AppComponent, CalendarComponent],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
