@@ -41,9 +41,9 @@ export class CalendarComponent {
         this.booked = { "time1": false, "time2": false, "time3": false };
       } else {
         querySnapshot.forEach((doc) => {
-          this.booked = doc.data()['Slot'][0];
+          this.booked = doc.data()['Slot'];
         });
-        console.log(this.booked);
+        // console.log(this.booked);
       }
     } catch (error) {
       console.log("Error getting documents: ", error);
