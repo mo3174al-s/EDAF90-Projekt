@@ -14,9 +14,9 @@ export const environment = {
     }
 };
 
-/* const app = initializeApp(environment.firebase);
+const app = initializeApp(environment.firebase);
 
 
-export const db = getFirestore(app); */
+export const db = getFirestore(app);
 
 
