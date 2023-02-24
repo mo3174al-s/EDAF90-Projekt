@@ -1,5 +1,5 @@
 <mat-card class="calendar">
-    <mat-calendar [(selected)]="selected" (selectedChange)="onDateChange($event)"></mat-calendar>
+    <mat-calendar [(selected)]="selected" [minDate]="today" (selectedChange)="onDateChange($event)"></mat-calendar>
 </mat-card>
 
 <div class="show-date" *ngIf="selected !== undefined">

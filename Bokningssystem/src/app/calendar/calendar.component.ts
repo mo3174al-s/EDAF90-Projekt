@@ -12,6 +12,7 @@ import { startOfDay, endOfDay } from 'date-fns';
 })
 export class CalendarComponent {
   selected: Date | undefined;
+  today = startOfDay(new Date());
   booked = { "time1": false, "time2": false, "time3": false }; //hämta data från firestore här!
   button1Clicked = false;
   button2Clicked = false;
@@ -35,11 +36,11 @@ export class CalendarComponent {
     const endTimestamp = firebase.firestore.Timestamp.fromMillis(endOfDay(event).getTime());
     const q = query(collection(db, "items"), where("Datum", ">=", startTimestamp), where("Datum", "<=", endTimestamp));
 
+    this.booked = { "time1": false, "time2": false, "time3": false };
+
     try {
       const querySnapshot = await getDocs(q);
-      if (querySnapshot.empty) {
-        this.booked = { "time1": false, "time2": false, "time3": false };
-      } else {
+      if (!querySnapshot.empty) {
         querySnapshot.forEach((doc) => {
           if (doc.data()['Slot'].time1 === true){
             this.booked.time1 = true;
