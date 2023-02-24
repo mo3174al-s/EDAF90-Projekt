@@ -3,6 +3,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../environments/environment';
+import { MenyBarComponent } from './meny-bar/meny-bar.component';
+
+ 
 
 // Add a new document in collection "cities"
 /* setDoc(doc(db, "items", "kursnamn"), {

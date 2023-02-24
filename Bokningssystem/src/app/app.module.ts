@@ -4,15 +4,17 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
+import {MenyBarComponent} from './meny-bar/meny-bar.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule, 
+    MatTabsModule
   ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, MenyBarComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
