@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {MenyBarComponent} from './meny-bar/meny-bar.component';
+import {MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -16,6 +18,8 @@ import {MatCardModule} from '@angular/material/card';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, 
+    MatTabsModule
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
@@ -24,6 +28,7 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatCardModule
   ],
+  declarations: [ AppComponent, MenyBarComponent],
   declarations: [ AppComponent, CalendarComponent],
   bootstrap: [ AppComponent ]
 })
