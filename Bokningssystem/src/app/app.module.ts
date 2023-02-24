@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from "@angular/material/input";
 import { CalendarComponent } from './calendar/calendar.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent],
   bootstrap: [ AppComponent ]
