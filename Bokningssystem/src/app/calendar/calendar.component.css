@@ -1,3 +1,9 @@
 .calendar {
     width: 300px;
-  }
+    padding: 20px;
+    margin: 20px;
+}
+
+.show-date {
+    padding: 20px;
+}
