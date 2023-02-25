@@ -19,6 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonalInfoFormComponent } from './personal-info-form/personal-info-form.component'; // Import FormsModule
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule } from '@angular/common/http';
+import { BookingSliderComponent } from './booking-slider/booking-slider.component';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 @NgModule({
   imports: [
@@ -37,9 +40,10 @@ import {HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatStepperModule
   ],
-  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent, BookingSliderComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
