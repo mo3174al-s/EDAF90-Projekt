@@ -14,6 +14,9 @@ import { MatInputModule} from "@angular/material/input";
 import { CalendarComponent } from './calendar/calendar.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { SearchBookingComponent } from './search-booking/search-booking.component';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+
 
 @NgModule({
   imports: [
@@ -28,9 +31,10 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
-  declarations: [ AppComponent, MenyBarComponent, CalendarComponent],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

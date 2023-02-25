@@ -1,0 +1,61 @@
+<button mat-raised-button style = "margin-left: 6px;margin-top: 10px"color="primary" (click) = "addBooking()">Lägg till testperson med namn "Sven" och personnummer "1"</button>
+
+
+<div style="position: relative; height: 55vh;">
+    <div class="center-component">
+        <h1 class='centered-horizontally' style="padding-bottom: 20px; text-align: center;">Hitta bokning</h1>
+        <div style="text-align: center;">
+            <mat-form-field>
+                <mat-label>Namn</mat-label>
+                <input matInput (keyup.enter)="searchForBooking()" [(ngModel)]="userName">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Personnummer</mat-label>
+                <input matInput (keyup.enter)="searchForBooking()" [(ngModel)]="userID">
+            </mat-form-field>
+        </div>
+        <br>
+        <button class='centered-horizontally' mat-raised-button color="primary" (click) = "searchForBooking()">Sök efter bokning</button>
+    </div>
+</div>
+
+<!-- Din bokning
+ --><div class="card-container" *ngIf="bookingFound">
+    <mat-card class="light-grey-background" style="width: 40%">
+        <mat-card-header>
+          <mat-card-title style="padding-bottom: 10px">Din bokning</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><b>Namn:</b> {{bookedName}}</p>
+          <p><b>Datum:</b> {{bookedDate}}</p>
+          <p><b>Tid:</b> {{bookedTime}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn" class = "cancel-button" (click) = "cancelBooking()">Avboka tid</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>
+
+<!--   Kunde inte hitta bokning
+ -->  <div class="card-container" *ngIf="bookingNotFound">
+    <mat-card class="light-grey-background" style="width: 40%">
+        <mat-card-header>
+          <mat-card-title style="padding-bottom: 10px" >Din bokning kunde inte hittas</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p style = "color: red">Kontrollera dina personuppgifter och försök igen. </p>
+        </mat-card-content>
+      </mat-card>
+  </div>
+
+<!--   Ta bort bokning
+ -->  <div class="card-container" *ngIf="bookingRemoved">
+    <mat-card class="light-grey-background" style="width: 40%">
+        <mat-card-header>
+          <mat-card-title style="padding-bottom: 10px; color: red" >Din bokning har tagits bort</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+  </div>
+
+
