@@ -1,0 +1,18 @@
+<div class="container">
+    <h4 style="margin: 20px; ">Fyll i dina personuppgifter:</h4>
+    <div class="personal-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Namn</mat-label>
+            <input matInput placeholder="John Doe" [formControl]="name" required>
+            <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="personal-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Personnummer</mat-label>
+            <input matInput placeholder="YYMMDD-XXXX" [formControl]="personnummer" required>
+            <mat-error *ngIf="personnummer.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </div>
+</div>

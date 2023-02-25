@@ -15,7 +15,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { SearchBookingComponent } from './search-booking/search-booking.component';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PersonalInfoFormComponent } from './personal-info-form/personal-info-form.component'; // Import FormsModule
 
 
 @NgModule({
@@ -32,9 +33,10 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
