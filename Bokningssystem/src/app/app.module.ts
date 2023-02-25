@@ -17,6 +17,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { SearchBookingComponent } from './search-booking/search-booking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonalInfoFormComponent } from './personal-info-form/personal-info-form.component'; // Import FormsModule
+import {MatIconModule} from '@angular/material/icon';
+import {HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { PersonalInfoFormComponent } from './personal-info-form/personal-info-fo
     MatCardModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    HttpClientModule
+  
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent],
   bootstrap: [ AppComponent ]

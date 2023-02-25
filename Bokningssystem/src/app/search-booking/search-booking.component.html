@@ -1,6 +1,5 @@
 <button mat-raised-button style = "margin-left: 6px;margin-top: 10px"color="primary" (click) = "addBooking()">Lägg till testperson med namn "Sven" och personnummer "1"</button>
 
-
 <div style="position: relative; height: 55vh;">
     <div class="center-component">
         <h1 class='centered-horizontally' style="padding-bottom: 20px; text-align: center;">Hitta bokning</h1>
@@ -25,13 +24,16 @@
     <mat-card class="light-grey-background" style="width: 40%">
         <mat-card-header>
           <mat-card-title style="padding-bottom: 10px">Din bokning</mat-card-title>
+          <button mat-icon-button (click) = "bookingFound = false">
+            <mat-icon svgIcon="close_button_icon"></mat-icon>
+          </button>
         </mat-card-header>
         <mat-card-content>
           <p><b>Namn:</b> {{bookedName}}</p>
           <p><b>Datum:</b> {{bookedDate}}</p>
           <p><b>Tid:</b> {{bookedTime}}</p>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions style="padding-bottom: 20px" >
           <button mat-raised-button color="warn" class = "cancel-button" (click) = "cancelBooking()">Avboka tid</button>
         </mat-card-actions>
       </mat-card>

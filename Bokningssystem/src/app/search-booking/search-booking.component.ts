@@ -5,18 +5,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { Timestamp } from 'firebase/firestore';
 import { TitleStrategy } from '@angular/router';
 
-
-
-
-//Lägg till testbokning i databas 
-/* setDoc(doc(db, "items", "test"), {
-  Datum : new Date(),
-  Personnummer: "1", 
-  Slot : {time1 : true, time2 : false, time3 : true},
-  name : "Sven"
-}); */
-
-
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search-booking',
@@ -25,6 +15,13 @@ import { TitleStrategy } from '@angular/router';
 
 })
 export class SearchBookingComponent {
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon(
+      'close_button_icon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/close_button_icon.svg')
+    );
+  }
+  
   bookingFound = false; //shows or hides "Din bokning"
   bookingRemoved = false; //Shows "Din bokning har tagits bort"
   bookingNotFound = false; //Shows "Bokningen kunde inte hittas"
@@ -92,4 +89,6 @@ export class SearchBookingComponent {
       name: "Sven"
     });
   }
+
+
 }
