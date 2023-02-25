@@ -20,8 +20,6 @@ import { PersonalInfoFormComponent } from './personal-info-form/personal-info-fo
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule } from '@angular/common/http';
 
-
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -40,7 +38,6 @@ import {HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule
-  
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent],
   bootstrap: [ AppComponent ]
