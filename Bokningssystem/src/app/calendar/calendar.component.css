@@ -8,9 +8,12 @@
     padding: 20px;
 }
 
-
-
 button.green{
-    background-color: green;
+    background-color: #28a745;
+    color: white;
+}
+
+button.grey{
+    background-color: #A9A9A9;
     color: white;
 }
