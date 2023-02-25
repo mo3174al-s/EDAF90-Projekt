@@ -16,6 +16,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { SearchBookingComponent } from './search-booking/search-booking.component';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import {MatIconModule} from '@angular/material/icon';
+import {HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    HttpClientModule
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent],
   bootstrap: [ AppComponent ]
