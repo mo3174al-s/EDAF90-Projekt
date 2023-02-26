@@ -1,11 +1,14 @@
-<mat-stepper orientation="vertical" [linear]=true #stepper>
-    <mat-step>
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-step [completed]="calendarValid">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Datum och tid</ng-template>
-            <app-calendar></app-calendar>
-            <div>
-                <button mat-button matStepperNext>Next</button>
-            </div>
+            <app-calendar (timeBooked)="onTimeBooked($event)"></app-calendar>
+            <div *ngIf="submitted && !calendarValid">
+                <p style="color:red; margin-left: 5px;">Please select a time to proceed</p>
+              </div>
+              <div>
+                <button mat-button (click)="submitted = true; stepper.next()">Next</button>
+              </div>
         </form>
     </mat-step>
 

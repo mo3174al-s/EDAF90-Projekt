@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-booking-slider',
@@ -7,12 +7,21 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./booking-slider.component.css']
 })
 export class BookingSliderComponent {
+
+  calendarValid = false;
+  submitted = false;
+
+  onTimeBooked(value: boolean) {
+    this.calendarValid = value;
+  }
+
   firstFormGroup = this._formBuilder.group({
-    // firstCtrl: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
-    // secondCtrl: ['', Validators.required],
   });
 
+
+
   constructor(private _formBuilder: FormBuilder) { }
+
 }
