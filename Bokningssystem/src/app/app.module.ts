@@ -19,6 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonalInfoFormComponent } from './personal-info-form/personal-info-form.component'; // Import FormsModule
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule } from '@angular/common/http';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
+
 
 @NgModule({
   imports: [
@@ -40,6 +43,7 @@ import {HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  providers: [ { provide: MAT_DATE_LOCALE, useValue: 'sv-SE' }]
 })
 export class AppModule {}
