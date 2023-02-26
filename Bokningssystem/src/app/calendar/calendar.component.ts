@@ -4,7 +4,6 @@ import { db } from 'src/environments/environment';
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { startOfDay, endOfDay } from 'date-fns';
-import { FormControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-calendar',
@@ -12,13 +11,17 @@ import { FormControl, ValidatorFn } from '@angular/forms';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent {
-  selected: Date | undefined;
+  selectedDate: Date | undefined;
   today = startOfDay(new Date());
   booked = { "time1": false, "time2": false, "time3": false };
   button1Clicked = false;
   button2Clicked = false;
   button3Clicked = false;
+  toBeBooked = { time1: false, time2: false, time3: false };
   @Output() timeBooked = new EventEmitter<boolean>();
+  @Output() times =  new EventEmitter<any>();
+  @Output() dateChange =  new EventEmitter<any>();
+
 
 
   onButtonClick(buttonNumber: number) {
@@ -29,21 +32,24 @@ export class CalendarComponent {
     } else if (buttonNumber === 3) {
       this.button3Clicked = !this.button3Clicked;
     }
+    this.toBeBooked = { time1: this.button1Clicked, time2: this.button2Clicked, time3: this.button3Clicked };
     this.timeBooked.emit(this.button1Clicked || this.button2Clicked || this.button3Clicked);
+    this.times.emit(this.toBeBooked);
   }
 
   async bookRoom() {
-    var toBeBooked = { time1: this.button1Clicked, time2: this.button2Clicked, time3: this.button3Clicked };
+    
     try {
       const docRef = await addDoc(collection(db, "items"), {
-        Datum: this.selected,
-        Slot: toBeBooked
+        Datum: this.selectedDate,
+        Slot: this.toBeBooked
       });
-      this.booked = toBeBooked;
+      this.booked = this.toBeBooked;
       this.button1Clicked = false;
       this.button2Clicked = false;
       this.button3Clicked = false;
       this.timeBooked.emit(false);
+      this.times.emit({ time1: false, time2: false, time3: false });
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -54,6 +60,8 @@ export class CalendarComponent {
     this.button2Clicked = false;
     this.button3Clicked = false;
     this.timeBooked.emit(false);
+    this.times.emit({ time1: false, time2: false, time3: false });
+    this.dateChange.emit(this.selectedDate);
     
     const startTimestamp = firebase.firestore.Timestamp.fromMillis(startOfDay(event).getTime());
     const endTimestamp = firebase.firestore.Timestamp.fromMillis(endOfDay(event).getTime());

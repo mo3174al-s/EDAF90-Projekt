@@ -16,7 +16,6 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { SearchBookingComponent } from './search-booking/search-booking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PersonalInfoFormComponent } from './personal-info-form/personal-info-form.component'; // Import FormsModule
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule } from '@angular/common/http';
 import { BookingSliderComponent } from './booking-slider/booking-slider.component';
@@ -43,7 +42,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     HttpClientModule,
     MatStepperModule
   ],
-  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent, BookingSliderComponent],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

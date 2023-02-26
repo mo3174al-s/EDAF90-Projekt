@@ -1,8 +1,8 @@
 <div class="container">
     <div class="calendar">
-        <mat-calendar [(selected)]="selected" [minDate]="today" (selectedChange)="onDateChange($event)"></mat-calendar>
+        <mat-calendar [(selected)]="selectedDate" [minDate]="today" (selectedChange)="onDateChange($event)"></mat-calendar>
     </div>
-    <div class="buttons" *ngIf="selected !== undefined">
+    <div class="buttons" *ngIf="selectedDate !== undefined">
         <h4>Välj tid:</h4>
         <button [ngClass]="{ 'green': button1Clicked, 'grey': booked.time1 }" (click)="onButtonClick(1)"
             [disabled]="booked.time1"

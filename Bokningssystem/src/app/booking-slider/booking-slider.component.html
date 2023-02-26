@@ -2,7 +2,7 @@
     <mat-step [completed]="calendarValid">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Datum och tid</ng-template>
-            <app-calendar (timeBooked)="onTimeBooked($event)"></app-calendar>
+            <app-calendar (times)="onTimes($event)" (dateChange)="onDateChange($event)" (timeBooked)="onTimeBooked($event)"></app-calendar>
             <div *ngIf="submitted && !calendarValid">
                 <p style="color:red; margin-left: 5px;">Please select a time to proceed</p>
               </div>
@@ -13,10 +13,27 @@
     </mat-step>
 
 
-    <mat-step>
+    <mat-step [completed]="!name.invalid && !personnummer.invalid">
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Personuppgifter </ng-template>
-            <app-personal-info-form></app-personal-info-form>
+            <p>Datum: {{date}} <br> Valda tider: {{toBeBooked | json}} </p>
+            <div class="container">
+                <h4 >Fyll i dina personuppgifter:</h4>
+                <div class="personal-form">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Namn</mat-label>
+                        <input matInput placeholder="John Doe" [formControl]="name" required>
+                        <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="personal-form">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Personnummer</mat-label>
+                        <input matInput placeholder="YYMMDD-XXXX" [formControl]="personnummer" required>
+                        <mat-error *ngIf="personnummer.invalid">{{getPerNumErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
             <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
