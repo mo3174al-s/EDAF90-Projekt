@@ -33,3 +33,7 @@ button.grey{
     margin-top: 60px;
     margin-left: 20px;
   }
+
+  .buttons-container {
+    width : 250px;
+  }

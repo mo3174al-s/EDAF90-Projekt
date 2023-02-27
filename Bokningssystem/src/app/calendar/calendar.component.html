@@ -1,19 +1,21 @@
 <div class="container">
     <div class="calendar">
-        <mat-calendar [(selected)]="selectedDate" [minDate]="today" (selectedChange)="onDateChange($event)"></mat-calendar>
+        <mat-calendar [(selected)]="selectedDate" [minDate]="today"
+            (selectedChange)="onDateChange($event)"></mat-calendar>
     </div>
-    <div class="buttons" *ngIf="selectedDate !== undefined">
-        <h4>Välj tid:</h4>
-        <button [ngClass]="{ 'green': button1Clicked, 'grey': booked.time1 }" (click)="onButtonClick(1)"
-            [disabled]="booked.time1"
-            style="border: 1px solid #AAAAAA;width : 200px; height: 50px; margin: 5px;"
-            mat-stroked-button>9 - 12</button>
-        <button [ngClass]="{ 'green': button2Clicked, 'grey': booked.time2 }" (click)="onButtonClick(2)"
-            [disabled]="booked.time2" style="border: 1px solid #AAAAAA;width : 200px; height: 50px; margin: 5px; "
-            mat-stroked-button>12 - 15</button>
-        <button [ngClass]="{ 'green': button3Clicked, 'grey': booked.time3 }" (click)="onButtonClick(3)"
-            [disabled]="booked.time3" style="border: 1px solid #AAAAAA; width : 200px; height: 50px; margin: 5px; "
-            mat-stroked-button>15 - 18</button>
+    <div class="buttons-container">
+        <div class="buttons" *ngIf="selectedDate !== undefined">
+            <h4>Välj tid:</h4>
+            <button [ngClass]="{ 'green': button1Clicked, 'grey': booked.time1 }" (click)="onButtonClick(1)"
+                [disabled]="booked.time1" style="border: 1px solid #AAAAAA;width : 200px; height: 50px; margin: 5px;"
+                mat-stroked-button>9 - 12</button>
+            <button [ngClass]="{ 'green': button2Clicked, 'grey': booked.time2 }" (click)="onButtonClick(2)"
+                [disabled]="booked.time2" style="border: 1px solid #AAAAAA;width : 200px; height: 50px; margin: 5px; "
+                mat-stroked-button>12 - 15</button>
+            <button [ngClass]="{ 'green': button3Clicked, 'grey': booked.time3 }" (click)="onButtonClick(3)"
+                [disabled]="booked.time3" style="border: 1px solid #AAAAAA; width : 200px; height: 50px; margin: 5px; "
+                mat-stroked-button>15 - 18</button>
+        </div>
     </div>
 </div>
 

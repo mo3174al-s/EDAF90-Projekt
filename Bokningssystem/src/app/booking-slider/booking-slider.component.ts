@@ -1,10 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
-import { db } from 'src/environments/environment';
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import { startOfDay, endOfDay } from 'date-fns';
 import { CalendarComponent } from '../calendar/calendar.component';
 
 @Component({
@@ -34,8 +29,19 @@ export class BookingSliderComponent implements AfterViewInit {
   }
 
   reset() {
-    this.nameCtrl.reset();
-    this.personnummerCtrl.reset();
+  
+    this.nameCtrl.markAsUntouched();
+      this.nameCtrl.reset();
+    // this.personnummerCtrl.clearValidators();
+    // this.nameCtrl.addValidators(Validators.required);
+    // this.nameCtrl.updateValueAndValidity();
+
+    this.personnummerCtrl.markAsUntouched();
+    this.personnummerCtrl.reset()
+  //   this.personnummerCtrl.clearValidators();
+  //   this.personnummerCtrl.addValidators(Validators.pattern(/^\d{6}-\d{4}$/));
+  //   this.personnummerCtrl.addValidators(Validators.required);
+  //   this.personnummerCtrl.updateValueAndValidity();
   }
 
   getNameErrorMessage() {
