@@ -7,6 +7,8 @@ import { TitleStrategy } from '@angular/router';
 
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-search-booking',
@@ -15,7 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 })
 export class SearchBookingComponent {
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private _snackBar: MatSnackBar) {
     this.matIconRegistry.addSvgIcon(
       'close_button_icon',
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/close_button_icon.svg')
@@ -29,6 +31,7 @@ export class SearchBookingComponent {
   //Input fields: 
   userName = "";
   userID = ""
+
   //Hämtat från server: 
   bookedName = "";
   bookedDate = "";
@@ -50,7 +53,6 @@ export class SearchBookingComponent {
     } else {
       querySnapshot.forEach((doc) => {
         this.documentID = doc.id;
-        // doc.data() is never undefined for query doc snapshots
         this.bookedName = doc.data()['name'];
         let timestamp = new Timestamp(doc.data()['Datum']['seconds'], doc.data()['Datum']['nanoseconds']);
         this.bookedDate = timestamp.toDate().toLocaleString("sv-SE", { dateStyle: "short" });
@@ -63,9 +65,6 @@ export class SearchBookingComponent {
           this.bookedTime = "15-18";
         }
 
-        /*  this.bookingInformation = JSON.stringify(doc.data());
-         console.log(doc.id, " => ", doc.data()); */
-
         this.bookingFound = true;
         this.bookingNotFound = false;
         this.bookingRemoved = false;
@@ -75,12 +74,18 @@ export class SearchBookingComponent {
   }
 
   cancelBooking() {
-    this.bookingRemoved = true;
+    this.bookingRemoved = false;
     this.bookingFound = false;
     this.bookingNotFound = false;
     deleteDoc(doc(db, "items", this.documentID));
+    this._snackBar.open('Du har avbokat din tid', 'Stäng', {
+      duration: 10000,
+      verticalPosition: 'bottom', 
+      panelClass: ['custom-snackbar']
+    });
   }
 
+  //Test för att lägga till personen "Sven" 
   addBooking() {
     setDoc(doc(db, "items", "test"), {
       Datum: new Date(),

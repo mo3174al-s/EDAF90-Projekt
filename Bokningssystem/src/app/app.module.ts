@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule } from '@angular/common/http';
 import { BookingSliderComponent } from './booking-slider/booking-slider.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSnackBarModule
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent],
   bootstrap: [ AppComponent ]
