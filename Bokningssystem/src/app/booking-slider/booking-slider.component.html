@@ -22,7 +22,7 @@
                 <div class="personal-form">
                     <mat-form-field appearance="fill">
                         <mat-label>Namn</mat-label>
-                        <input matInput placeholder="John Doe" [formControl]="nameCtrl" [(ngModel)]="namn" required>
+                        <input matInput placeholder="Förnamn Efternamn" [formControl]="nameCtrl" [(ngModel)]="namn" required>
                         <mat-error *ngIf="nameCtrl.invalid">{{getNameErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>

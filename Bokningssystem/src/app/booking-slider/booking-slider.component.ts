@@ -29,11 +29,11 @@ personnummer = "";
   }
 
   getNameErrorMessage() {
-    return 'Please enter your name.';
+    return 'Ange ditt för och efternamn.';
   }
 
   getPerNumErrorMessage() {
-    return 'Please enter a valid personal number (YYMMDD-XXXX).';
+    return 'Skriv in ditt personnummer på formen (YYMMDD-XXXX).';
   }
 
   onTimeBooked(value: boolean) {
