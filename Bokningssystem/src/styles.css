@@ -5,6 +5,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Hitta bokning snackbar: */
 .custom-snackbar{
-    --mdc-snackbar-container-color: #0b395c;
-    --mat-mdc-snack-bar-button-color: #fff
+    --mdc-snackbar-container-color: #768d96;
+    --mat-mdc-snack-bar-button-color: #fefefd
   }
+
+  body { background-color: #262224 }
