@@ -80,6 +80,7 @@ export class SearchBookingComponent {
     deleteDoc(doc(db, "items", this.documentID));
     this._snackBar.open('Du har avbokat din tid', 'Stäng', {
       duration: 10000,
+      verticalPosition: 'bottom', 
       panelClass: ['custom-snackbar']
     });
   }
