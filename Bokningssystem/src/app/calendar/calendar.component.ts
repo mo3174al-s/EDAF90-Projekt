@@ -10,6 +10,7 @@ import { startOfDay, endOfDay } from 'date-fns';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
+
 export class CalendarComponent {
   selectedDate: Date | undefined;
   today = startOfDay(new Date());

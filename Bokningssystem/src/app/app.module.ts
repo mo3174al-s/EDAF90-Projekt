@@ -22,6 +22,9 @@ import { BookingSliderComponent } from './booking-slider/booking-slider.componen
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
+
 
 @NgModule({
   imports: [
@@ -46,5 +49,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent],
   bootstrap: [ AppComponent ]
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent],
+  bootstrap: [ AppComponent ],
+  providers: [ { provide: MAT_DATE_LOCALE, useValue: 'sv-SE' }]
 })
 export class AppModule {}
