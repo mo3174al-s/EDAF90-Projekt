@@ -1,10 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Hitta bokning snackbar: */
 .custom-snackbar{
-    --mdc-snackbar-container-color: #0b395c;
-    --mat-mdc-snack-bar-button-color: #fff
+    --mdc-snackbar-container-color: #768d96;
+    --mat-mdc-snack-bar-button-color: #fefefd
   }
+
+  /* body { background-color: #262224 } */

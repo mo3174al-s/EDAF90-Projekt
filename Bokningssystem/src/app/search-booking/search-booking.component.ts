@@ -27,7 +27,6 @@ export class SearchBookingComponent {
   }
 
   bookingFound = false; //shows or hides "Din bokning"
-  bookingRemoved = false; //Shows "Din bokning har tagits bort"
   bookingNotFound = false; //Shows "Bokningen kunde inte hittas"
 
   //Input fields: 
@@ -47,15 +46,16 @@ export class SearchBookingComponent {
   async searchForBooking() {
 
     if (this.nameCtrl.valid && this.personnummerCtrl.valid) {
+
       const q = query(collection(db, "items"), where("Personnummer", "==", this.userID), where("name", "==", this.userName));
-      this.userID = "";
-      this.userName = "";
+
+      this.personnummerCtrl.reset(); 
+      this.nameCtrl.reset();
 
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
         this.bookingNotFound = true;
         this.bookingFound = false;
-        this.bookingRemoved = false;
 
       } else {
         querySnapshot.forEach((doc) => {
@@ -74,7 +74,6 @@ export class SearchBookingComponent {
 
           this.bookingFound = true;
           this.bookingNotFound = false;
-          this.bookingRemoved = false;
 
         });
       }
@@ -82,7 +81,6 @@ export class SearchBookingComponent {
   }
 
   cancelBooking() {
-    this.bookingRemoved = false;
     this.bookingFound = false;
     this.bookingNotFound = false;
     deleteDoc(doc(db, "items", this.documentID));
@@ -97,7 +95,7 @@ export class SearchBookingComponent {
   addBooking() {
     setDoc(doc(db, "items", "test"), {
       Datum: new Date(),
-      Personnummer: "1",
+      Personnummer: "111111-1111",
       Slot: { time1: true, time2: false, time3: true },
       name: "Sven"
     });
