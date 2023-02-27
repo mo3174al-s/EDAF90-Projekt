@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db } from 'src/environments/environment';
 import firebase from "firebase/compat/app";
@@ -11,7 +11,7 @@ import { startOfDay, endOfDay } from 'date-fns';
   styleUrls: ['./calendar.component.css']
 })
 
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
   selectedDate: Date | undefined;
   today = startOfDay(new Date());
   booked = { "time1": false, "time2": false, "time3": false };
@@ -20,8 +20,13 @@ export class CalendarComponent {
   button3Clicked = false;
   toBeBooked = { time1: false, time2: false, time3: false };
   @Output() timeBooked = new EventEmitter<boolean>();
-  @Output() times =  new EventEmitter<any>();
-  @Output() dateChange =  new EventEmitter<any>();
+  @Output() times = new EventEmitter<any>();
+  @Output() dateChange = new EventEmitter<any>();
+  @Input() namn: string | undefined;
+  @Input() personnummer: string |undefined;
+
+  ngOnInit():void {
+  }
 
 
 
@@ -39,12 +44,15 @@ export class CalendarComponent {
   }
 
   async bookRoom() {
-    
+
     try {
       const docRef = await addDoc(collection(db, "items"), {
         Datum: this.selectedDate,
-        Slot: this.toBeBooked
+        Slot: this.toBeBooked,
+        name: this.namn,
+        Personnummer: this.personnummer
       });
+      this.selectedDate = undefined;
       this.booked = this.toBeBooked;
       this.button1Clicked = false;
       this.button2Clicked = false;
@@ -63,21 +71,26 @@ export class CalendarComponent {
     this.timeBooked.emit(false);
     this.times.emit({ time1: false, time2: false, time3: false });
     this.dateChange.emit(this.selectedDate);
-    
+    console.log("date changed")
+
     const startTimestamp = firebase.firestore.Timestamp.fromMillis(startOfDay(event).getTime());
     const endTimestamp = firebase.firestore.Timestamp.fromMillis(endOfDay(event).getTime());
-
     const q = query(collection(db, "items"), where("Datum", ">=", startTimestamp), where("Datum", "<=", endTimestamp));
-
     this.booked = { "time1": false, "time2": false, "time3": false };
 
     try {
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
         querySnapshot.forEach((doc) => {
-          this.booked.time1 = doc.data()['Slot'].time1;
-          this.booked.time2 = doc.data()['Slot'].time2;
-          this.booked.time3 = doc.data()['Slot'].time3;
+          if (doc.data()['Slot'].time1){
+            this.booked.time1 = doc.data()['Slot'].time1;
+          }
+          if (doc.data()['Slot'].time2){
+            this.booked.time2 = doc.data()['Slot'].time2;
+          }
+          if (doc.data()['Slot'].time3){
+            this.booked.time3 = doc.data()['Slot'].time3;
+          }
         });
       }
     } catch (error) {

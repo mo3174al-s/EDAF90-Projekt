@@ -2,13 +2,14 @@
     <mat-step [completed]="calendarValid">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Datum och tid</ng-template>
-            <app-calendar (times)="onTimes($event)" (dateChange)="onDateChange($event)" (timeBooked)="onTimeBooked($event)"></app-calendar>
+            <app-calendar [namn]="namn" [personnummer]="personnummer" (times)="onTimes($event)"
+                (dateChange)="onDateChange($event)" (timeBooked)="onTimeBooked($event)"></app-calendar>
             <div *ngIf="submitted && !calendarValid">
                 <p style="color:red; margin-left: 5px;">Please select a time to proceed</p>
-              </div>
-              <div>
+            </div>
+            <div>
                 <button mat-button (click)="submitted = true; stepper.next()">Next</button>
-              </div>
+            </div>
         </form>
     </mat-step>
 
@@ -18,18 +19,20 @@
             <ng-template matStepLabel>Personuppgifter </ng-template>
             <p>Datum: {{date}} <br> Valda tider: {{toBeBooked | json}} </p>
             <div class="container">
-                <h4 >Fyll i dina personuppgifter:</h4>
+                <h4>Fyll i dina personuppgifter:</h4>
                 <div class="personal-form">
                     <mat-form-field appearance="fill">
                         <mat-label>Namn</mat-label>
-                        <input matInput placeholder="Förnamn Efternamn" [formControl]="nameCtrl" [(ngModel)]="namn" required>
+                        <input matInput placeholder="Förnamn Efternamn" [formControl]="nameCtrl" [(ngModel)]="namn" required
+                >
                         <mat-error *ngIf="nameCtrl.invalid">{{getNameErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="personal-form">
                     <mat-form-field appearance="fill">
                         <mat-label>Personnummer</mat-label>
-                        <input matInput placeholder="YYMMDD-XXXX" [formControl]="personnummerCtrl" [(ngModel)]="personnummer" required>
+                        <input matInput placeholder="YYMMDD-XXXX" [formControl]="personnummerCtrl"
+                            [(ngModel)]="personnummer" required>
                         <mat-error *ngIf="personnummerCtrl.invalid">{{getPerNumErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
@@ -43,14 +46,15 @@
 
     <mat-step>
         <ng-template matStepLabel>Bekräftelse</ng-template>
-            <p>Här visas bekräftelsen <br> 
-                Datum: {{date}} <br>
-                Valda tider: {{toBeBooked | json}} <br>
-                Namn: {{namn}} <br>
-                Personummer: {{personnummer}} </p>
+        <p>Här visas bekräftelsen <br>
+            Datum: {{date}} <br>
+            Valda tider: {{toBeBooked | json}} <br>
+            Namn: {{namn}} <br>
+            Personummer: {{personnummer}} </p>
         <div>
-            <button style="width : 300px; height: 40px;" mat-raised-button color="primary" (click)="book()">Boka</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button style="width : 300px; height: 40px;" mat-raised-button color="primary"
+                (click)="book(); stepper.reset(); submitted = false; reset();">Boka</button>
+            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
         </div>
     </mat-step>
 </mat-stepper>

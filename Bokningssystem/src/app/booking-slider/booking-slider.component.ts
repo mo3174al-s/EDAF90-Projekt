@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db } from 'src/environments/environment';
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { startOfDay, endOfDay } from 'date-fns';
+import { CalendarComponent } from '../calendar/calendar.component';
 
 @Component({
   selector: 'app-booking-slider',
   templateUrl: './booking-slider.component.html',
   styleUrls: ['./booking-slider.component.css']
 })
-export class BookingSliderComponent {
+export class BookingSliderComponent implements AfterViewInit {
   calendarValid = false;
   submitted = false;
   date: Date | undefined;
@@ -20,23 +21,21 @@ export class BookingSliderComponent {
   personnummerCtrl = new FormControl('', [Validators.pattern(/^\d{6}-\d{4}$/)]);
   namn = "";
   personnummer = "";
-  button1Clicked = false;
-  button2Clicked = false;
-  button3Clicked = false;
 
-  async book() {
-    try {
-      const docRef = await addDoc(collection(db, "items"), {
-        Datum: this.date,
-        Slot: this.toBeBooked,
-        name: this.namn,
-        Personnummer: this.personnummer
-      });
-    
+  ngAfterViewInit() {
+  }
 
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+  @ViewChild(CalendarComponent)
+  private calendarComponent!: CalendarComponent;
+
+  book() {
+    this.calendarComponent.bookRoom();
+
+  }
+
+  reset() {
+    this.nameCtrl.reset();
+    this.personnummerCtrl.reset();
   }
 
   getNameErrorMessage() {
