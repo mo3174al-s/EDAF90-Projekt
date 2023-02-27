@@ -13,7 +13,7 @@
     </mat-step>
 
 
-    <mat-step [completed]="!name.invalid && !personnummer.invalid">
+    <mat-step [completed]="!nameCtrl.invalid && !personnummerCtrl.invalid">
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Personuppgifter </ng-template>
             <p>Datum: {{date}} <br> Valda tider: {{toBeBooked | json}} </p>
@@ -22,15 +22,15 @@
                 <div class="personal-form">
                     <mat-form-field appearance="fill">
                         <mat-label>Namn</mat-label>
-                        <input matInput placeholder="John Doe" [formControl]="name" required>
-                        <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
+                        <input matInput placeholder="John Doe" [formControl]="nameCtrl" [(ngModel)]="namn" required>
+                        <mat-error *ngIf="nameCtrl.invalid">{{getNameErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="personal-form">
                     <mat-form-field appearance="fill">
                         <mat-label>Personnummer</mat-label>
-                        <input matInput placeholder="YYMMDD-XXXX" [formControl]="personnummer" required>
-                        <mat-error *ngIf="personnummer.invalid">{{getPerNumErrorMessage()}}</mat-error>
+                        <input matInput placeholder="YYMMDD-XXXX" [formControl]="personnummerCtrl" [(ngModel)]="personnummer" required>
+                        <mat-error *ngIf="personnummerCtrl.invalid">{{getPerNumErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -41,10 +41,13 @@
         </form>
     </mat-step>
 
-
     <mat-step>
         <ng-template matStepLabel>Bekräftelse</ng-template>
-        <p>Här visas bekräftelsen</p>
+            <p>Här visas bekräftelsen <br> 
+                Datum: {{date}} <br>
+                Valda tider: {{toBeBooked | json}} <br>
+                Namn: {{namn}} <br>
+                Personummer: {{personnummer}} </p>
         <div>
             <button mat-button (click)="stepper.reset()">Reset</button>
         </div>

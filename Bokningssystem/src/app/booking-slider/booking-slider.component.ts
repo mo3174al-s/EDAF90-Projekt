@@ -9,12 +9,26 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class BookingSliderComponent {
   calendarValid = false;
   submitted = false;
-  date : Date | undefined;
-  toBeBooked = { time1: false, time2: false, time3: false};
-  name = new FormControl('', [Validators.required]);
-  personnummer = new FormControl('', [Validators.pattern(/^\d{6}-\d{4}$/)]);
+  date: Date | undefined;
+  toBeBooked = { time1: false, time2: false, time3: false };
+  nameCtrl = new FormControl('', [Validators.required]);
+  personnummerCtrl = new FormControl('', [Validators.pattern(/^\d{6}-\d{4}$/)]);
+namn = "";
+personnummer = "";
+  
+  submit() {
+    if (this.secondFormGroup.valid) {
+      const bookingData = {
+        name: this.secondFormGroup.get('name')?.value,
+        personnummer: this.secondFormGroup.get('personnummer')?.value,
+      };
+      console.log(bookingData);
+    } else {
+      console.log("error");
+    }
+  }
 
- getNameErrorMessage() {
+  getNameErrorMessage() {
     return 'Please enter your name.';
   }
 
@@ -22,15 +36,15 @@ export class BookingSliderComponent {
     return 'Please enter a valid personal number (YYMMDD-XXXX).';
   }
 
-   onTimeBooked(value: boolean) {
+  onTimeBooked(value: boolean) {
     this.calendarValid = value;
   }
 
-  onDateChange(value: any){
+  onDateChange(value: any) {
     this.date = value;
   }
 
-  onTimes(value: any){
+  onTimes(value: any) {
     this.toBeBooked = value;
   }
 
