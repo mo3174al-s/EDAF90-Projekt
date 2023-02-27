@@ -5,7 +5,7 @@ import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../environments/environment';
 import { MenyBarComponent } from './meny-bar/meny-bar.component';
 
- 
+
 
 // Add a new document in collection "cities"
 /* setDoc(doc(db, "items", "kursnamn"), {
@@ -23,7 +23,7 @@ import { MenyBarComponent } from './meny-bar/meny-bar.component';
 export class AppComponent {
 
   title = 'Bokningssystem';
-  
+
 
   items: Observable<any[]>;
   constructor(firestore: AngularFirestore) {
@@ -39,4 +39,14 @@ export class AppComponent {
 })
 export class HomeComponent { }
 
+@Component({
+  selector: 'app-home',
+  template: `
+  <div style="margin:20px">
+    <h1>Oops..!</h1>
+    <h1>Sidan kunde inte hittas</h1>
+</div>
+`
+})
+export class PageNotFoundComponent { }
 
