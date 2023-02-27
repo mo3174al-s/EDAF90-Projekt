@@ -20,7 +20,6 @@ export class BookingSliderComponent {
   personnummerCtrl = new FormControl('', [Validators.pattern(/^\d{6}-\d{4}$/)]);
   namn = "";
   personnummer = "";
-
   button1Clicked = false;
   button2Clicked = false;
   button3Clicked = false;
@@ -32,11 +31,9 @@ export class BookingSliderComponent {
         Slot: this.toBeBooked,
         name: this.namn,
         Personnummer: this.personnummer
-
       });
+    
 
-
-      
     } catch (e) {
       console.error("Error adding document: ", e);
     }
