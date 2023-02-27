@@ -49,8 +49,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent],
   bootstrap: [ AppComponent ]
-  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, PersonalInfoFormComponent],
-  bootstrap: [ AppComponent ],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent],
   providers: [ { provide: MAT_DATE_LOCALE, useValue: 'sv-SE' }]
 })
 export class AppModule {}
