@@ -21,8 +21,9 @@ import {HttpClientModule } from '@angular/common/http';
 import { BookingSliderComponent } from './booking-slider/booking-slider.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { RouterModule, RouterLinkActive } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -45,7 +46,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatIconModule,
     HttpClientModule,
     MatStepperModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterModule,
+    AppRoutingModule
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent],
   bootstrap: [ AppComponent ],

@@ -31,3 +31,12 @@ export class AppComponent {
   }
 }
 
+@Component({
+  selector: 'app-home',
+  template: `
+    <h1 style="margin:20px;">Välkommen!</h1>
+  `
+})
+export class HomeComponent { }
+
+
