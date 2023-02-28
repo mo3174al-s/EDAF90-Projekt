@@ -47,7 +47,7 @@ export class SearchBookingComponent {
 
     if (this.nameCtrl.valid && this.personnummerCtrl.valid) {
 
-      const q = query(collection(db, "items"), where("Personnummer", "==", this.userID), where("name", "==", this.userName));
+      const q = query(collection(db, "items"), where("Personnummer", "==", this.userID), where("search", "==", this.userName.toLowerCase()));
 
       this.personnummerCtrl.reset(); 
       this.nameCtrl.reset();
