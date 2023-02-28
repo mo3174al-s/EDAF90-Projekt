@@ -6,13 +6,13 @@
         <div style="text-align: center;">
             <mat-form-field>
                 <mat-label>Namn</mat-label>
-                <input matInput placeholder="Förnamn Efternamn" (keyup.enter)="searchForBooking()" [(ngModel)]="userName" [formControl]="nameCtrl" required>
+                <input #namnInput matInput placeholder="Förnamn Efternamn" (keyup.enter)="searchForBooking(); namnInput.blur()" [(ngModel)]="userName" [formControl]="nameCtrl" required>
                 <mat-error *ngIf="nameCtrl.invalid">{{getNameErrorMessage()}}</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field>
                 <mat-label>Personnummer</mat-label>
-                <input matInput placeholder="YYMMDD-XXXX" (keyup.enter)="searchForBooking()" [(ngModel)]="userID" [formControl]="personnummerCtrl" required>
+                <input #pnInput matInput placeholder="YYMMDD-XXXX" (keyup.enter)="searchForBooking(); pnInput.blur()" [(ngModel)]="userID" [formControl]="personnummerCtrl" required>
                 <mat-error *ngIf="personnummerCtrl.invalid">{{getPerNumErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>

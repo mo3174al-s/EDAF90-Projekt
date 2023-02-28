@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from 'src/environments/environment';
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -19,6 +19,10 @@ import { FormControl, Validators } from '@angular/forms';
 
 })
 export class SearchBookingComponent {
+  @ViewChild('pnInput') pnInputRef!: ElementRef;
+  @ViewChild('namnInput') namnInputRef!: ElementRef;
+
+
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private _snackBar: MatSnackBar) {
     this.matIconRegistry.addSvgIcon(
       'close_button_icon',
@@ -49,7 +53,11 @@ export class SearchBookingComponent {
 
       const q = query(collection(db, "items"), where("Personnummer", "==", this.userID), where("search", "==", this.userName.toLowerCase()));
 
-      this.personnummerCtrl.reset(); 
+      
+
+      this.namnInputRef.nativeElement.blur();
+      this.pnInputRef.nativeElement.blur();
+      this.personnummerCtrl.reset();
       this.nameCtrl.reset();
 
       const querySnapshot = await getDocs(q);
