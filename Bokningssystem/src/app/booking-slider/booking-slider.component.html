@@ -20,9 +20,11 @@
         <mat-step [completed]="!nameCtrl.invalid && !personnummerCtrl.invalid">
             <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Personuppgifter </ng-template>
-                <p>Datum: {{date}} <br> Valda tider: {{toBeBooked | json}} </p>
+                <p> <b>Datum: </b>{{booking.datum}} <br>
+                    <b>Valda tider: </b>{{booking.tider}} <br>
+                </p>
                 <div class="container">
-                    <h4>Fyll i dina personuppgifter:</h4>
+                    <h4><b>Fyll i dina personuppgifter:</b></h4>
                     <div class="personal-form">
                         <mat-form-field appearance="fill">
                             <mat-label>Namn</mat-label>
@@ -50,10 +52,11 @@
         <mat-step>
             <ng-template matStepLabel>Slutför bokningen</ng-template>
             <h4><b>Vill du slutföra din bokning?</b></h4>
-            <p> Datum: {{date}} <br>
-                Valda tider: {{toBeBooked | json}} <br>
-                Namn: {{namn}} <br>
-                Personummer: {{personnummer}} </p>
+            <p> <b>Datum: </b>{{booking.datum}} <br>
+                <b>Valda tider: </b>{{booking.tider}} <br>
+                <b>Namn: </b>{{namn}} <br>
+                <b>Personnummer: </b>{{personnummer}}
+            </p>
             <div>
                 <button style="width : 300px; height: 40px;" mat-raised-button color="primary"
                     (click)="stepper.reset(); submitted = false; book();">Boka</button>

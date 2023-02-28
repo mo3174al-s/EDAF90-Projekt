@@ -11,8 +11,8 @@ import { BookingDetailsService } from '../booking-details.service';
 
 export class BookingConfirmationComponent {
   bookingID: string = ""
-  readableDate: string = ""
-  times : string = ""
+  date: string = ""
+  times: string = ""
 
   public bookingDetails: any;
 
@@ -29,32 +29,16 @@ export class BookingConfirmationComponent {
     } catch (e) {
       console.error('Error retrieving booking from local storage:', e);
     }
-    this.readableDate = new Date(this.bookingDetails.Datum.seconds * 1000)
-      .toLocaleString("sv-SE", { dateStyle: "short" });
+    this.date = this.bookingDetails.datum;
+    this.times = this.bookingDetails.tider;
 
-      var times = [];
-      if (this.bookingDetails.Slot.time1){
-        times.push("9-12");
-      }
-      if (this.bookingDetails.Slot.time2){
-        times.push("12-15");
-      }
-      if (this.bookingDetails.Slot.time3){
-        times.push("15-18");
-      }
-      this.times = times.join(", ");
-        
     this.route.paramMap.subscribe(params => {
       this.bookingID = params.get('bookingID')?.toString() || '';
     });
   }
 
-  returnToBookingPage(){
+  returnToBookingPage() {
     this.router.navigate(['/boka']);
   }
 
 }
-
-
-
-// 

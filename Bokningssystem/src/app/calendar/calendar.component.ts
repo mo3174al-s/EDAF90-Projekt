@@ -50,6 +50,7 @@ export class CalendarComponent implements OnInit {
         Datum: this.selectedDate,
         Slot: this.toBeBooked,
         name: this.namn,
+        search:this.namn?.toLowerCase(),
         Personnummer: this.personnummer
       });
       this.selectedDate = undefined;

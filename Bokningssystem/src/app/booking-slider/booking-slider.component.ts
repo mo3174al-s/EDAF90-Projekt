@@ -20,15 +20,16 @@ export class BookingSliderComponent implements AfterViewInit {
   personnummerCtrl = new FormControl('', [Validators.pattern(/^\d{6}-\d{4}$/)]);
   namn = "";
   personnummer = "";
-  booking = { ID: "", namn: "", personnummer: "", Datum: undefined, Slot: { "time1": false, "time2": false, "time3": false } };
+  booking = { ID: "", namn: "", personnummer: "", datum: "", tider: "" };
 
+  
   ngAfterViewInit() {
   }
 
   @ViewChild(CalendarComponent)
   private calendarComponent!: CalendarComponent;
 
-  setBookingDetails(){
+  setBookingDetails() {
     console.log("skickar: " + this.booking)
     this.bookingDetailsService.setBookingDetails(this.booking)
   }
@@ -36,14 +37,12 @@ export class BookingSliderComponent implements AfterViewInit {
   async book() {
     this.calendarComponent.bookRoom();
     const q = query(collection(db, "items"), where("Personnummer", "==", this.personnummer), where("name", "==", this.namn)
-    ,where("Datum", '==', this.date));
+      , where("Datum", '==', this.date));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       this.booking.ID = doc.id;
-      this.booking.Slot = this.toBeBooked;
-      this.booking.Datum = doc.data()['Datum'];
-      this.booking.namn = doc.data()['name'];
-      this.booking.personnummer = doc.data()['Personnummer'];
+      this.booking.namn = this.namn;
+      this.booking.personnummer = this.personnummer;
       this.setBookingDetails();
       try {
         localStorage.setItem('booking', JSON.stringify(this.booking));
@@ -68,10 +67,22 @@ export class BookingSliderComponent implements AfterViewInit {
 
   onDateChange(value: any) {
     this.date = value;
+    this.booking.datum =  this.date ? this.date.toLocaleString("sv-SE", { dateStyle: "short" }): "" ;
   }
 
   onTimes(value: any) {
     this.toBeBooked = value;
+    var times = [];
+      if (this.toBeBooked.time1) {
+        times.push("9-12");
+      }
+      if (this.toBeBooked.time2) {
+        times.push("12-15");
+      }
+      if (this.toBeBooked.time3) {
+        times.push("15-18");
+      }
+      this.booking.tider = times.join(", ");
   }
 
   firstFormGroup = this._formBuilder.group({
@@ -79,6 +90,6 @@ export class BookingSliderComponent implements AfterViewInit {
   secondFormGroup = this._formBuilder.group({
   });
 
-  constructor(private _formBuilder: FormBuilder, private router: Router, private bookingDetailsService: BookingDetailsService ) { }
+  constructor(private _formBuilder: FormBuilder, private router: Router, private bookingDetailsService: BookingDetailsService) { }
 
 }
