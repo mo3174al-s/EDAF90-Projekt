@@ -1,6 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CalendarComponent } from '../calendar/calendar.component';
+import { db } from 'src/environments/environment';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { Router } from '@angular/router';
+import { BookingDetailsService } from '../booking-details.service';
 
 @Component({
   selector: 'app-booking-slider',
@@ -16,6 +20,7 @@ export class BookingSliderComponent implements AfterViewInit {
   personnummerCtrl = new FormControl('', [Validators.pattern(/^\d{6}-\d{4}$/)]);
   namn = "";
   personnummer = "";
+  booking = { ID: "", namn: "", personnummer: "", Datum: undefined, Slot: { "time1": false, "time2": false, "time3": false } };
 
   ngAfterViewInit() {
   }
@@ -23,25 +28,30 @@ export class BookingSliderComponent implements AfterViewInit {
   @ViewChild(CalendarComponent)
   private calendarComponent!: CalendarComponent;
 
-  book() {
-    this.calendarComponent.bookRoom();
-
+  setBookingDetails(){
+    console.log("skickar: " + this.booking)
+    this.bookingDetailsService.setBookingDetails(this.booking)
   }
 
-  reset() {
-  
-    this.nameCtrl.markAsUntouched();
-      this.nameCtrl.reset();
-    // this.personnummerCtrl.clearValidators();
-    // this.nameCtrl.addValidators(Validators.required);
-    // this.nameCtrl.updateValueAndValidity();
-
-    this.personnummerCtrl.markAsUntouched();
-    this.personnummerCtrl.reset()
-  //   this.personnummerCtrl.clearValidators();
-  //   this.personnummerCtrl.addValidators(Validators.pattern(/^\d{6}-\d{4}$/));
-  //   this.personnummerCtrl.addValidators(Validators.required);
-  //   this.personnummerCtrl.updateValueAndValidity();
+  async book() {
+    this.calendarComponent.bookRoom();
+    const q = query(collection(db, "items"), where("Personnummer", "==", this.personnummer), where("name", "==", this.namn)
+    ,where("Datum", '==', this.date));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      this.booking.ID = doc.id;
+      this.booking.Slot = this.toBeBooked;
+      this.booking.Datum = doc.data()['Datum'];
+      this.booking.namn = doc.data()['name'];
+      this.booking.personnummer = doc.data()['Personnummer'];
+      this.setBookingDetails();
+      try {
+        localStorage.setItem('booking', JSON.stringify(this.booking));
+      } catch (e) {
+        console.error('Error saving booking to local storage:', e);
+      }
+      this.router.navigate(['/bekräftelse', this.booking.ID]);
+    })
   }
 
   getNameErrorMessage() {
@@ -69,6 +79,6 @@ export class BookingSliderComponent implements AfterViewInit {
   secondFormGroup = this._formBuilder.group({
   });
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private router: Router, private bookingDetailsService: BookingDetailsService ) { }
 
 }

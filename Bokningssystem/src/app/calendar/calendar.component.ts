@@ -71,7 +71,6 @@ export class CalendarComponent implements OnInit {
     this.timeBooked.emit(false);
     this.times.emit({ time1: false, time2: false, time3: false });
     this.dateChange.emit(this.selectedDate);
-    console.log("date changed")
 
     const startTimestamp = firebase.firestore.Timestamp.fromMillis(startOfDay(event).getTime());
     const endTimestamp = firebase.firestore.Timestamp.fromMillis(endOfDay(event).getTime());

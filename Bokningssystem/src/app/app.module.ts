@@ -24,6 +24,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { RouterModule, RouterLinkActive } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 
 
 
@@ -51,7 +52,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule
     
   ],
-  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent, BookingConfirmationComponent],
   bootstrap: [ AppComponent ],
   providers: [ { provide: MAT_DATE_LOCALE, useValue: 'sv-SE' }]
 })
