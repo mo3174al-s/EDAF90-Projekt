@@ -1,30 +1,33 @@
-
 <div style="position: relative; height: 55vh;">
-    <div class="center-component">
-        <h1 class='centered-horizontally' style="padding-bottom: 20px; text-align: center; color: #fefefd">Hitta bokning</h1>
-        <div style="text-align: center;">
-            <mat-form-field>
-                <mat-label>Namn</mat-label>
-                <input #namnInput matInput placeholder="Förnamn Efternamn" (keyup.enter)="searchForBooking(); namnInput.blur()" [(ngModel)]="userName" [formControl]="nameCtrl" required>
-                <mat-error *ngIf="nameCtrl.invalid">{{getNameErrorMessage()}}</mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <mat-label>Personnummer</mat-label>
-                <input #pnInput matInput placeholder="YYMMDD-XXXX" (keyup.enter)="searchForBooking(); pnInput.blur()" [(ngModel)]="userID" [formControl]="personnummerCtrl" required>
-                <mat-error *ngIf="personnummerCtrl.invalid">{{getPerNumErrorMessage()}}</mat-error>
-            </mat-form-field>
-        </div>
-        <br>
-        <button class='centered-horizontally' mat-raised-button color="primary" (click) = "searchForBooking()">Sök efter bokning</button>
+  <div class="center-component">
+    <h1 class='centered-horizontally' style="padding-bottom: 20px; text-align: center; color: #fefefd">Hitta bokning
+    </h1>
+    <div style="text-align: center;">
+      <mat-form-field>
+        <mat-label>Namn</mat-label>
+        <input #namnInput matInput placeholder="Förnamn Efternamn" (keyup.enter)="searchForBooking(); namnInput.blur()"
+          [(ngModel)]="userName" [formControl]="nameCtrl" required>
+        <mat-error *ngIf="nameCtrl.invalid">{{getNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Personnummer</mat-label>
+        <input #pnInput matInput placeholder="YYMMDD-XXXX" (keyup.enter)="searchForBooking(); pnInput.blur()"
+          [(ngModel)]="userID" [formControl]="personnummerCtrl" required>
+        <mat-error *ngIf="personnummerCtrl.invalid">{{getPerNumErrorMessage()}}</mat-error>
+      </mat-form-field>
     </div>
+    <br>
+    <button class='centered-horizontally' mat-raised-button color="primary" (click)="searchForBooking()">Sök efter
+      bokning</button>
+  </div>
 </div>
 
 <!-- Din bokning
  -->
 
-  <ng-container *ngFor="let booking of bookingsArray">
-    <ng-container *ngIf="booking.bookingFound">
+<ng-container *ngFor="let booking of bookingsArray">
+  <ng-container *ngIf="booking.bookingFound">
     <div class="card-container">
       <mat-card style="width: 40%">
         <mat-card-header>
@@ -39,29 +42,32 @@
           <p><b>Tid:</b> {{booking.bookedTime}}</p>
         </mat-card-content>
         <mat-card-actions style="padding-bottom: 20px">
-          <button mat-raised-button color="warn" class="cancel-button" (click)="cancelBooking(booking)">Avboka tid</button>
+          <button mat-raised-button color="warn" class="cancel-button" (click)="cancelBooking(booking)">Avboka
+            tid</button>
         </mat-card-actions>
       </mat-card>
     </div>
     <br>
   </ng-container>
-  
+</ng-container>
+
 
 <!--   Kunde inte hitta bokning
- -->  <div class="card-container" *ngIf="bookingNotFound">
-    <mat-card  style="width: 40%">
-        <mat-card-header>
-          <mat-card-title style="padding-bottom: 10px" >Din bokning kunde inte hittas</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p style = "color: red">Kontrollera dina personuppgifter och försök igen. </p>
-        </mat-card-content>
-      </mat-card>
-  </div>
-
-  <div style="position: fixed; bottom: 0; left: 0; margin-left: 6px; margin-bottom: 10px; display: inline-block;" >
-  <button mat-raised-button color="primary" style = "margin-right: 10px" (click) = "addBooking()">Lägg till testperson med namn "Sven" och personnummer "111111-1111"</button>
-<button mat-raised-button color="primary" style = "padding-right: 15px; padding-left: 15px" (click) = "deleteAllDocuments()">Ta bort alla "dokument" i firestore</button>
+ -->
+<div class="card-container" *ngIf="bookingNotFound">
+  <mat-card style="width: 40%">
+    <mat-card-header>
+      <mat-card-title style="padding-bottom: 10px">Din bokning kunde inte hittas</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p style="color: red">Kontrollera dina personuppgifter och försök igen. </p>
+    </mat-card-content>
+  </mat-card>
 </div>
 
-
+<div style="position: fixed; bottom: 0; left: 0; margin-left: 6px; margin-bottom: 10px; display: inline-block;">
+  <button mat-raised-button color="primary" style="margin-right: 10px" (click)="addBooking()">Lägg till testperson med
+    namn "Sven" och personnummer "111111-1111"</button>
+  <button mat-raised-button color="primary" style="padding-right: 15px; padding-left: 15px"
+    (click)="deleteAllDocuments()">Ta bort alla "dokument" i firestore</button>
+</div>
