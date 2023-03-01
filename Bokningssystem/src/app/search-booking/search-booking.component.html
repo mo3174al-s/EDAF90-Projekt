@@ -30,7 +30,7 @@
     <div class="card-container" *ngIf="booking.bookingFound">
       <mat-card style="width: 40%">
         <mat-card-header>
-          <mat-card-title style="padding-bottom: 10px">Din bokning</mat-card-title>
+          <mat-card-title style="padding-bottom: 10px">Bokning {{booking.bookingID}}</mat-card-title>
           <button mat-icon-button (click)="booking.bookingFound = false">
             <mat-icon svgIcon="close_button_icon"></mat-icon>
           </button>

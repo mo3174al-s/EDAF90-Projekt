@@ -55,20 +55,18 @@ export class SearchBookingComponent {
       const q = query(collection(db, "items"), where("Personnummer", "==", this.userID), where("search", "==", this.userName.toLowerCase()));
 
 
-
       this.namnInputRef.nativeElement.blur();
       this.pnInputRef.nativeElement.blur();
       this.personnummerCtrl.reset();
       this.nameCtrl.reset();
 
       const querySnapshot = await getDocs(q);
+
       if (querySnapshot.empty) {
         this.bookingNotFound = true;
 
       } else {
-
-  
-
+        this.bookingsArray = [];
         querySnapshot.forEach((doc) => {
          /*  this.documentID = doc.id;
           this.bookedName = doc.data()['name']; */
@@ -99,7 +97,7 @@ export class SearchBookingComponent {
           this.bookingsArray.push(
             {
               bookingFound : true,
-              documentID : doc.id, 
+              bookingID : doc.id, 
               bookedName : doc.data()['name'],
               bookedDate : timestamp.toDate().toLocaleString("sv-SE", { dateStyle: "short" }),
               bookedTime : bookedTime
@@ -111,9 +109,10 @@ export class SearchBookingComponent {
   }
 
   cancelBooking(booking: any) {
+    console.log("nu");
     this.bookingNotFound = false;
     booking.bookingFound = false;
-    deleteDoc(doc(db, "items", booking.documentID));
+    deleteDoc(doc(db, "items", booking.bookingID));
     this._snackBar.open('Du har avbokat din tid', 'Stäng', {
       duration: 10000,
       verticalPosition: 'bottom',

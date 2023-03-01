@@ -8,10 +8,10 @@
                         (dateChange)="onDateChange($event)" (timeBooked)="onTimeBooked($event)"></app-calendar>
                 </div>
                 <div *ngIf="submitted && !calendarValid">
-                    <p style="color:red; margin-left: 5px;">Please select a time to proceed</p>
+                    <p style="color:red; margin-left: 5px;">Välj en tid för att gå vidare</p>
                 </div>
                 <div>
-                    <button mat-button (click)="submitted = true; stepper.next();">Next</button>
+                    <button mat-button (click)="submitted = true; stepper.next();">Nästa</button>
                 </div>
             </form>
         </mat-step>
@@ -42,9 +42,10 @@
                         </mat-form-field>
                     </div>
                 </div>
+                <br>
                 <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button matStepperPrevious>Tillbaka</button>
+                    <button mat-button matStepperNext>Nästa</button>
                 </div>
             </form>
         </mat-step>
@@ -57,6 +58,7 @@
                 <b>Namn: </b>{{namn}} <br>
                 <b>Personnummer: </b>{{personnummer}}
             </p>
+            <br>
             <div>
                 <button style="width : 300px; height: 40px;" mat-raised-button color="primary"
                     (click)="stepper.reset(); submitted = false; book();">Boka</button>
