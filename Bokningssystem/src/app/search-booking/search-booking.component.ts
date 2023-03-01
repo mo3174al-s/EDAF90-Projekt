@@ -9,8 +9,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { FormControl, Validators } from '@angular/forms';
-
-
+import id from 'date-fns/locale/id/index';
 
 @Component({
   selector: 'app-search-booking',
@@ -53,7 +52,7 @@ export class SearchBookingComponent {
 
       const q = query(collection(db, "items"), where("Personnummer", "==", this.userID), where("search", "==", this.userName.toLowerCase()));
 
-      
+
 
       this.namnInputRef.nativeElement.blur();
       this.pnInputRef.nativeElement.blur();
@@ -72,13 +71,24 @@ export class SearchBookingComponent {
           let timestamp = new Timestamp(doc.data()['Datum']['seconds'], doc.data()['Datum']['nanoseconds']);
           this.bookedDate = timestamp.toDate().toLocaleString("sv-SE", { dateStyle: "short" });
 
-          if (doc.data()['Slot']['time1']) {
+
+
+          if (doc.data()['Slot']['time1'] && doc.data()['Slot']['time2'] && doc.data()['Slot']['time3']) {
+            this.bookedTime = "9-18";
+          } else if (doc.data()['Slot']['time1'] && doc.data()['Slot']['time2']) {
+            this.bookedTime = "9-15";
+          } else if (doc.data()['Slot']['time1'] && doc.data()['Slot']['time3']) {
+            this.bookedTime = "9-12, 15-18";
+          } else if (doc.data()['Slot']['time2'] && doc.data()['Slot']['time3']) {
+            this.bookedTime = "12-18";
+          } else if (doc.data()['Slot']['time1']) {
             this.bookedTime = "9-12";
           } else if (doc.data()['Slot']['time2']) {
             this.bookedTime = "12-15";
           } else if (doc.data()['Slot']['time3']) {
             this.bookedTime = "15-18";
           }
+
 
           this.bookingFound = true;
           this.bookingNotFound = false;
@@ -95,7 +105,7 @@ export class SearchBookingComponent {
     this._snackBar.open('Du har avbokat din tid', 'Stäng', {
       duration: 10000,
       verticalPosition: 'bottom',
-      panelClass: ['custom-snackbar']
+      //panelClass: ['custom-snackbar']
     });
   }
 
@@ -105,7 +115,8 @@ export class SearchBookingComponent {
       Datum: new Date(),
       Personnummer: "111111-1111",
       Slot: { time1: true, time2: false, time3: true },
-      name: "Sven"
+      name: "Sven",
+      search: "sven"
     });
   }
 
@@ -115,6 +126,18 @@ export class SearchBookingComponent {
 
   getPerNumErrorMessage() {
     return 'Skriv in ditt personnummer på formen (YYMMDD-XXXX).';
+  }
+
+  async deleteAllDocuments() {
+    //Deletes all documents in firestore:
+    const q = query(collection(db, "items"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((document) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(document.id, " => ", document.data());
+      deleteDoc(doc(db, "items", document.id));
+    });
   }
 
 
