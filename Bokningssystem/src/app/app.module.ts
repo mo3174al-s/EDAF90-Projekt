@@ -25,6 +25,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { RouterModule, RouterLinkActive } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
+import { HomeComponent } from './home/home.component';
+import { MatDividerModule } from '@angular/material/divider'
+ 
 
 
 
@@ -49,10 +52,11 @@ import { BookingConfirmationComponent } from './booking-confirmation/booking-con
     MatStepperModule,
     MatSnackBarModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDividerModule
     
   ],
-  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent, BookingConfirmationComponent],
+  declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent, BookingConfirmationComponent, HomeComponent],
   bootstrap: [ AppComponent ],
   providers: [ { provide: MAT_DATE_LOCALE, useValue: 'sv-SE' }]
 })

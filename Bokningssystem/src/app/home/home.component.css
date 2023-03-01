@@ -1,0 +1,30 @@
+.center {
+    display: flex;
+  justify-content: center;
+
+}
+
+.testimonial-wrapper {
+  opacity: 1;
+}
+
+.testimonial-wrapper.ng-enter,
+.testimonial-wrapper.ng-leave {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.testimonial-wrapper.ng-enter {
+  opacity: 0;
+}
+
+.testimonial-wrapper.ng-enter-active {
+  opacity: 1;
+}
+
+.testimonial-wrapper.ng-leave {
+  opacity: 1;
+}
+
+.testimonial-wrapper.ng-leave-active {
+  opacity: 0;
+}

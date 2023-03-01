@@ -34,17 +34,9 @@ export class AppComponent {
 @Component({
   selector: 'app-home',
   template: `
-    <h1 style="margin:20px;">Välkommen!</h1>
-  `
-})
-export class HomeComponent { }
-
-@Component({
-  selector: 'app-home',
-  template: `
   <div style="margin:20px">
     <h1>Oops..!</h1>
-    <h1>Sidan kunde inte hittas</h1>
+    <h2>Sidan kunde inte hittas</h2>
 </div>
 `
 })

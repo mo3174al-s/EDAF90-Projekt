@@ -1,4 +1,4 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 80%;">
+<div *ngIf="bookingID === urlID" style="display: flex; justify-content: center; align-items: center; height: 80%;">
     <mat-card style="width: 40%; ">
         <div style="margin: 20px; padding: 5px;">
             <h1 style="margin: 5px">Din bokning är bekräftad!</h1>
@@ -15,4 +15,8 @@
                 (click)="returnToBookingPage()">Tillbaka till bokningssidan</button>
         </div>
     </mat-card>
+   </div>
+   <div *ngIf="bookingID !== urlID" style="margin:20px">
+    <h1>Oops..!</h1>
+    <h2>Sidan kunde inte hittas</h2>
 </div>

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent, PageNotFoundComponent } from './app.component';
+import { PageNotFoundComponent } from './app.component';
 import { BookingSliderComponent } from './booking-slider/booking-slider.component';
 import { SearchBookingComponent } from './search-booking/search-booking.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'hem', component: HomeComponent },
   { path: 'boka', component: BookingSliderComponent },
   { path: 'hitta%20bokning', component: SearchBookingComponent },
-  { path: 'bekräftelse/:bookingID', component: BookingConfirmationComponent},
+  { path: 'bekräftelse/:bookingID', component: BookingConfirmationComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ]; // sets up routes constant where you define your routes
 

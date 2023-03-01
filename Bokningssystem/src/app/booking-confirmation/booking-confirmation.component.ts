@@ -13,6 +13,7 @@ export class BookingConfirmationComponent {
   bookingID: string = ""
   date: string = ""
   times: string = ""
+  urlID: string = ""
 
   public bookingDetails: any;
 
@@ -31,9 +32,10 @@ export class BookingConfirmationComponent {
     }
     this.date = this.bookingDetails.datum;
     this.times = this.bookingDetails.tider;
+    this.bookingID = this.bookingDetails.ID;
 
     this.route.paramMap.subscribe(params => {
-      this.bookingID = params.get('bookingID')?.toString() || '';
+      this.urlID = params.get('bookingID')?.toString() || '';
     });
   }
 
