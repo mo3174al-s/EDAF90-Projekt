@@ -24,7 +24,8 @@
  -->
 
   <ng-container *ngFor="let booking of bookingsArray">
-    <div class="card-container" *ngIf="booking.bookingFound">
+    <ng-container *ngIf="booking.bookingFound">
+    <div class="card-container">
       <mat-card style="width: 40%">
         <mat-card-header>
           <mat-card-title style="padding-bottom: 10px">Bokning {{booking.bookingID}}</mat-card-title>
