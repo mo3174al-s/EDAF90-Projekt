@@ -29,7 +29,9 @@ export class SearchBookingComponent {
     );
   }
 
-  bookingFound = false; //shows or hides "Din bokning"
+  //Samla alla "bokningar" i en person: OBS lokala variabler 
+  bookingsArray: any[] = [];
+
   bookingNotFound = false; //Shows "Bokningen kunde inte hittas"
 
   //Input fields: 
@@ -37,10 +39,10 @@ export class SearchBookingComponent {
   userID = ""
 
   //Hämtat från server: 
-  bookedName = "";
+ /*  bookedName = "";
   bookedDate = "";
   bookedTime = "";
-  documentID = "";
+  documentID = ""; */
 
   //Kontroll av fält:
   nameCtrl = new FormControl('', [Validators.required]);
@@ -62,46 +64,56 @@ export class SearchBookingComponent {
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
         this.bookingNotFound = true;
-        this.bookingFound = false;
 
       } else {
+
+  
+
         querySnapshot.forEach((doc) => {
-          this.documentID = doc.id;
-          this.bookedName = doc.data()['name'];
+         /*  this.documentID = doc.id;
+          this.bookedName = doc.data()['name']; */
           let timestamp = new Timestamp(doc.data()['Datum']['seconds'], doc.data()['Datum']['nanoseconds']);
-          this.bookedDate = timestamp.toDate().toLocaleString("sv-SE", { dateStyle: "short" });
+           let bookedDate = timestamp.toDate().toLocaleString("sv-SE", { dateStyle: "short" });
 
 
-
+          let bookedTime = "";
           if (doc.data()['Slot']['time1'] && doc.data()['Slot']['time2'] && doc.data()['Slot']['time3']) {
-            this.bookedTime = "9-18";
+            bookedTime = "9-18";
           } else if (doc.data()['Slot']['time1'] && doc.data()['Slot']['time2']) {
-            this.bookedTime = "9-15";
+            bookedTime = "9-15";
           } else if (doc.data()['Slot']['time1'] && doc.data()['Slot']['time3']) {
-            this.bookedTime = "9-12, 15-18";
+            bookedTime = "9-12, 15-18";
           } else if (doc.data()['Slot']['time2'] && doc.data()['Slot']['time3']) {
-            this.bookedTime = "12-18";
+            bookedTime = "12-18";
           } else if (doc.data()['Slot']['time1']) {
-            this.bookedTime = "9-12";
+            bookedTime = "9-12";
           } else if (doc.data()['Slot']['time2']) {
-            this.bookedTime = "12-15";
+            bookedTime = "12-15";
           } else if (doc.data()['Slot']['time3']) {
-            this.bookedTime = "15-18";
+            bookedTime = "15-18";
           }
 
 
-          this.bookingFound = true;
           this.bookingNotFound = false;
 
+          this.bookingsArray.push(
+            {
+              bookingFound : true,
+              documentID : doc.id, 
+              bookedName : doc.data()['name'],
+              bookedDate : timestamp.toDate().toLocaleString("sv-SE", { dateStyle: "short" }),
+              bookedTime : bookedTime
+            }
+          ); 
         });
       }
     }
   }
 
-  cancelBooking() {
-    this.bookingFound = false;
+  cancelBooking(booking: any) {
     this.bookingNotFound = false;
-    deleteDoc(doc(db, "items", this.documentID));
+    booking.bookingFound = false;
+    deleteDoc(doc(db, "items", booking.documentID));
     this._snackBar.open('Du har avbokat din tid', 'Stäng', {
       duration: 10000,
       verticalPosition: 'bottom',

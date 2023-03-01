@@ -24,24 +24,30 @@
 </div>
 
 <!-- Din bokning
- --><div class="card-container" *ngIf="bookingFound">
-    <mat-card style="width: 40%">
+ -->
+
+  <ng-container *ngFor="let booking of bookingsArray">
+    <div class="card-container" *ngIf="booking.bookingFound">
+      <mat-card style="width: 40%">
         <mat-card-header>
           <mat-card-title style="padding-bottom: 10px">Din bokning</mat-card-title>
-          <button mat-icon-button (click) = "bookingFound = false">
+          <button mat-icon-button (click)="booking.bookingFound = false">
             <mat-icon svgIcon="close_button_icon"></mat-icon>
           </button>
         </mat-card-header>
         <mat-card-content>
-          <p><b>Namn:</b> {{bookedName}}</p>
-          <p><b>Datum:</b> {{bookedDate}}</p>
-          <p><b>Tid:</b> {{bookedTime}}</p>
+          <p><b>Namn:</b> {{booking.bookedName}}</p>
+          <p><b>Datum:</b> {{booking.bookedDate}}</p>
+          <p><b>Tid:</b> {{booking.bookedTime}}</p>
         </mat-card-content>
-        <mat-card-actions style="padding-bottom: 20px" >
-          <button mat-raised-button color="warn" class = "cancel-button" (click) = "cancelBooking()">Avboka tid</button>
+        <mat-card-actions style="padding-bottom: 20px">
+          <button mat-raised-button color="warn" class="cancel-button" (click)="cancelBooking(booking)">Avboka tid</button>
         </mat-card-actions>
       </mat-card>
-  </div>
+    </div>
+    <br>
+  </ng-container>
+  
 
 <!--   Kunde inte hitta bokning
  -->  <div class="card-container" *ngIf="bookingNotFound">
