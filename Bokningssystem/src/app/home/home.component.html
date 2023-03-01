@@ -10,7 +10,7 @@
 
 <div *ngFor="let testimonial of testimonials; let i=index">
     <div style="margin-top: 50px;" class="testimonial-wrapper; center" *ngIf="currentSlide === i" [@fadeInOut]>
-      <mat-card class="center" style="width: 500px; min-height: 200px;">
+      <mat-card class="center" style="width: 500px; height: 200px;">
         <mat-card-content class="center" style="margin: 10px; text-align: center;">
           {{ testimonial.text }}
         </mat-card-content>
