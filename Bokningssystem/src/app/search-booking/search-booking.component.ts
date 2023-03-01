@@ -129,6 +129,13 @@ export class SearchBookingComponent {
       name: "Sven",
       search: "sven"
     });
+    setDoc(doc(db, "items", "test2"), {
+      Datum: new Date(),
+      Personnummer: "111111-1111",
+      Slot: { time1: false, time2: true, time3: false },
+      name: "Sven",
+      search: "sven"
+    });
   }
 
   getNameErrorMessage() {
@@ -148,6 +155,12 @@ export class SearchBookingComponent {
       // doc.data() is never undefined for query doc snapshots
       console.log(document.id, " => ", document.data());
       deleteDoc(doc(db, "items", document.id));
+    });
+
+    this._snackBar.open('Alla bokningar har tagits bort', 'Stäng', {
+      duration: 10000,
+      verticalPosition: 'bottom',
+      //panelClass: ['custom-snackbar']
     });
   }
 
