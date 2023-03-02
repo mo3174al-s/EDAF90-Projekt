@@ -75,7 +75,7 @@ export class BookingSliderComponent implements AfterViewInit {
     this.booking.datum =  this.date ? this.date.toLocaleString("sv-SE", { dateStyle: "short" }): "" ;
   }
 
-  getInfo(){
+  getInfo(event: any){
     this.namn = this.nameCtrl.value ? this.nameCtrl.value : ""; 
     this.personnummer = this.personnummerCtrl.value ? this.personnummerCtrl.value : ""; 
   }
@@ -96,8 +96,10 @@ export class BookingSliderComponent implements AfterViewInit {
   }
 
   firstFormGroup = this._formBuilder.group({
+    
   });
   secondFormGroup = this._formBuilder.group({
+
   });
 
   constructor(private _formBuilder: FormBuilder, private router: Router, private bookingDetailsService: BookingDetailsService) { }

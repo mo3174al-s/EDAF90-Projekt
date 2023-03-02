@@ -28,7 +28,7 @@
                     <div class="personal-form">
                         <mat-form-field appearance="fill">
                             <mat-label>Namn</mat-label>
-                            <input matInput placeholder="Förnamn Efternamn" [formControl]="nameCtrl" 
+                            <input matInput (change) = "getInfo($event)" placeholder="Förnamn Efternamn" [formControl]="nameCtrl" 
                                 required>
                             <mat-error *ngIf="nameCtrl.invalid">{{getNameErrorMessage()}}</mat-error>
                         </mat-form-field>
@@ -36,7 +36,7 @@
                     <div class="personal-form">
                         <mat-form-field appearance="fill">
                             <mat-label>Personnummer</mat-label>
-                            <input matInput placeholder="YYMMDD-XXXX" [formControl]="personnummerCtrl"
+                            <input matInput (change) = "getInfo($event)" placeholder="YYMMDD-XXXX" [formControl]="personnummerCtrl"
                                  required>
                             <mat-error *ngIf="personnummerCtrl.invalid">{{getPerNumErrorMessage()}}</mat-error>
                         </mat-form-field>
@@ -51,7 +51,7 @@
         </mat-step>
 
         <mat-step>
-            <ng-template matStepLabel (click) = "getInfo()" >Slutför bokningen</ng-template>
+            <ng-template matStepLabel>Slutför bokningen</ng-template>
             <h4><b>Vill du slutföra din bokning?</b></h4>
             <p> <b>Datum: </b>{{booking.datum}} <br>
                 <b>Valda tider: </b>{{booking.tider}} <br>
