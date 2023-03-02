@@ -24,6 +24,7 @@ export class BookingSliderComponent implements AfterViewInit {
 
   
   ngAfterViewInit() {
+    
   }
 
   @ViewChild(CalendarComponent)
@@ -35,6 +36,10 @@ export class BookingSliderComponent implements AfterViewInit {
   }
 
   async book() {
+
+    this.namn = this.nameCtrl.value ? this.nameCtrl.value : ""; 
+    this.personnummer = this.personnummerCtrl.value ? this.personnummerCtrl.value : ""; 
+
     this.calendarComponent.bookRoom();
     const q = query(collection(db, "items"), where("Personnummer", "==", this.personnummer), where("name", "==", this.namn)
       , where("Datum", '==', this.date));
@@ -68,6 +73,11 @@ export class BookingSliderComponent implements AfterViewInit {
   onDateChange(value: any) {
     this.date = value;
     this.booking.datum =  this.date ? this.date.toLocaleString("sv-SE", { dateStyle: "short" }): "" ;
+  }
+
+  getInfo(){
+    this.namn = this.nameCtrl.value ? this.nameCtrl.value : ""; 
+    this.personnummer = this.personnummerCtrl.value ? this.personnummerCtrl.value : ""; 
   }
 
   onTimes(value: any) {
