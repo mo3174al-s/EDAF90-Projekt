@@ -1,31 +1,30 @@
 <div style="margin:20px; margin-top:30px;">
-    <h1>Välkommen till E-Husets bokningstjänst!</h1>
-    <mat-divider></mat-divider>
-    <h4>Vi är glada att kunna erbjuda studenter vid Lunds universitet en bekväm och
-        rymlig plats att samarbeta eller studera i grupp.</h4>
-    <p>Vårt grupprum är perfekt för presentationer, brainstorming eller grupparbeten.
-        Bokning av E-Husets grupprum är enkelt. När du har bestämt dig för en tid
-        som passar dig, fyller du i dina personuppgifter och bekräftar din bokning.</p>
+  <h1>Välkommen till E-Husets bokningstjänst!</h1>
+  <mat-divider></mat-divider>
+  <h4>Vi är glada att kunna erbjuda studenter vid Lunds universitet en bekväm och
+    rymlig plats att samarbeta eller studera i grupp.</h4>
+  <p>Vårt grupprum är perfekt för presentationer, brainstorming eller grupparbeten.
+    Bokning av E-Husets grupprum är enkelt. När du har bestämt dig för en tid
+    som passar dig, fyller du i dina personuppgifter och bekräftar din bokning.</p>
 </div>
 
-<div *ngFor="let testimonial of testimonials; let i=index">
-    <div style="margin-top: 50px;" class="testimonial-wrapper; center" *ngIf="currentSlide === i" [@fadeInOut]>
-      <mat-card class="center" style="width: 500px; height: 200px;">
-        <mat-card-content class="center" style="margin: 10px; text-align: center;">
-          {{ testimonial.text }}
-        </mat-card-content>
-        <mat-card-footer style="margin: 20px; text-align: center;">
-          <i>{{ testimonial.author }}</i>
-        </mat-card-footer>
-      </mat-card>
-    </div>
+<ng-container *ngFor="let testimonial of testimonials; let i=index">
+  <div style="margin-top: 50px;" class="testimonial-wrapper; center" *ngIf="currentSlide === i" [@fadeInOut]>
+    <mat-card class="center" style="width: 500px; height: 200px;">
+      <mat-card-content class="center" style="margin: 10px; text-align: center;">
+        {{ testimonial.text }}
+      </mat-card-content>
+      <mat-card-footer style="margin: 20px; text-align: center;">
+        <i>{{ testimonial.author }}</i>
+      </mat-card-footer>
+    </mat-card>
   </div>
-  <div class="center" style="margin-top: 15px;">
-    <button mat-icon-button class="gallery-button left" (click)="prevSlide()">
-      <mat-icon>keyboard_arrow_left</mat-icon>
-    </button>
-    <button mat-icon-button class="gallery-button right" (click)="nextSlide()">
-      <mat-icon>keyboard_arrow_right</mat-icon>
-    </button>
-  </div>
-  
+</ng-container>
+<div class="center" style="margin-top: 15px;">
+  <button mat-icon-button class="gallery-button left" (click)="prevSlide()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <button mat-icon-button class="gallery-button right" (click)="nextSlide()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

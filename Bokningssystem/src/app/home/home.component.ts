@@ -17,7 +17,7 @@ interface Testimonial {
         animate('0.3s 0.2s ease-in-out', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate(10, style({ opacity: 0 }))
+        animate(0, style({ opacity: 0 }))
       ])
     ])
   ]
