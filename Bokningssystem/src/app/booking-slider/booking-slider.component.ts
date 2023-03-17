@@ -31,7 +31,6 @@ export class BookingSliderComponent implements AfterViewInit {
   private calendarComponent!: CalendarComponent;
 
   setBookingDetails() {
-    console.log("skickar: " + this.booking)
     this.bookingDetailsService.setBookingDetails(this.booking)
   }
 

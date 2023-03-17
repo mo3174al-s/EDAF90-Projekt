@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class MenyBarComponent {
   navLinks = [
-    { label: 'Hem', path: '/hem' },
-    { label: 'Boka', path: '/boka' },
-    { label: 'Hitta bokning', path: '/hitta%20bokning' }
+    { label: 'Hem', path: '/hem', panel: 'hem-tab', },
+    { label: 'Boka', path: '/boka', panel: 'boka-tab', },
+    { label: 'Hitta bokning', path: '/hitta%20bokning', panel: 'hitta-bokning-tab' }
   ];
 
 }

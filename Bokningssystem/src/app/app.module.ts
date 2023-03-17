@@ -54,6 +54,7 @@ import { MatDividerModule } from '@angular/material/divider'
     RouterModule,
     AppRoutingModule,
     MatDividerModule
+
     
   ],
   declarations: [ AppComponent, MenyBarComponent, CalendarComponent, SearchBookingComponent, BookingSliderComponent, BookingConfirmationComponent, HomeComponent],
